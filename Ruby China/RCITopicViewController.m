@@ -6,17 +6,30 @@
 //  Copyright (c) 2012 lainuo.info. All rights reserved.
 //
 
-#import "RCIViewController.h"
+#import "RCITopicViewController.h"
 #import "RCITopic.h"
 
-@interface RCIViewController ()
+NSString *const RCITopicPropertyNamedGravatar = @"user.gravatar";
+
+@interface RCITopicViewController ()
 @property (nonatomic, strong) NSArray *topics;
 @property (nonatomic, weak) IBOutlet UITableView* topicTableView;
+@property (nonatomic, strong) NSMutableArray *observedVisibleItems;
 @end
 
-@implementation RCIViewController
+@implementation RCITopicViewController
 @synthesize topicTableView = _topicTableView;
 @synthesize topics = _topics;
+@synthesize observedVisibleItems = _observedVisibleItems;
+
+- (NSMutableArray *)observedVisibleItems
+{
+    if (!_observedVisibleItems) {
+        _observedVisibleItems = [[NSMutableArray alloc] init];
+    }
+    
+    return _observedVisibleItems;
+}
 
 - (void)viewDidLoad
 {
@@ -65,7 +78,30 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     RCITopic *topic = [self.topics objectAtIndex:indexPath.row];
-    cell.textLabel.text = topic.title;
+    
+    UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
+	titleLabel.text = topic.title;
+    UILabel *userLabel = (UILabel *)[cell viewWithTag:102];
+	userLabel.text = topic.user.login;
+    UILabel *nodeLabel = (UILabel *)[cell viewWithTag:103];
+	nodeLabel.text = topic.nodeName;
+    UILabel *countLabel = (UILabel *)[cell viewWithTag:104];
+	countLabel.text = topic.repliesCount.stringValue;
+    // cell.textLabel.text = topic.title;
+
+    if (![self.observedVisibleItems containsObject:topic.user]) {
+        [topic addObserver:self forKeyPath:RCITopicPropertyNamedGravatar options:0 context:NULL];
+        [topic.user loadGravatar];
+        [self.observedVisibleItems addObject:topic.user];
+    }
+    
+    UIActivityIndicatorView *progressIndicator = (UIActivityIndicatorView *)[cell viewWithTag:105];
+    UIImageView *imageView = (UIImageView *)[cell viewWithTag:106];
+    if (topic.user.gravatar == nil) {
+        [progressIndicator setHidden:NO];
+    } else {
+        imageView.image = topic.user.gravatar;
+    }
     
     return cell;
 }
@@ -85,6 +121,21 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    if ([keyPath isEqualToString:RCITopicPropertyNamedGravatar]) {
+        [self performSelectorOnMainThread:@selector(reloadRowForEntity:) withObject:object waitUntilDone:NO modes:[NSArray arrayWithObject:NSRunLoopCommonModes]];
+    }
+}
+
+- (void)reloadRowForEntity:(id)object {
+    NSInteger row = [self.topics indexOfObject:object];
+    if (row != NSNotFound) {
+        RCITopic *topic = [self.topics objectAtIndex:row];
+        UITableViewCell *cell = [self.topicTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
+        UIImageView *imageView = (UIImageView *)[cell viewWithTag:106];
+        imageView.image = topic.user.gravatar;
+        UIActivityIndicatorView *progressIndicator = (UIActivityIndicatorView *)[cell viewWithTag:105];
+        [progressIndicator setHidden:YES];
+    }   
 }
 
 @end

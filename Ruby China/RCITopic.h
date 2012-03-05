@@ -16,6 +16,6 @@
 @property (nonatomic, strong) NSDate *createdDate;
 @property (nonatomic, strong) NSDate *updatedDate;
 @property (nonatomic, strong) NSString *nodeName;
-//@property (nonatomic, strong) RCIUser *user;
+@property (nonatomic, strong) RCIUser *user;
 
 @end

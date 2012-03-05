@@ -14,6 +14,6 @@
 @synthesize createdDate = _createdDate;
 @synthesize updatedDate = _updatedDate;
 @synthesize nodeName = _nodeName;
-//@synthesize user = _user;
+@synthesize user = _user;
 
 @end

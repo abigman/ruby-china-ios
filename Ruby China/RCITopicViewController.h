@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <RestKit/RestKit.h>
 
-@interface RCIViewController : UITableViewController <RKObjectLoaderDelegate>
+@interface RCITopicViewController : UITableViewController <RKObjectLoaderDelegate>
 
 @end
