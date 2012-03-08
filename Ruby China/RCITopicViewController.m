@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 lainuo.info. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "RCITopicViewController.h"
 #import "RCITopic.h"
 
@@ -35,8 +36,8 @@ NSString *const RCITopicPropertyNamedGravatar = @"user.gravatar";
 {
     [super viewDidLoad];
 
-    RKObjectMapping *topicMappping = [[RKObjectManager sharedManager].mappingProvider objectMappingForClass:[RCITopic class]];
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:@"/api/topics.json" objectMapping:topicMappping delegate:self];
+    RKObjectMapping *topicMapping = [[RKObjectManager sharedManager].mappingProvider objectMappingForClass:[RCITopic class]];
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:@"/api/topics.json" objectMapping:topicMapping delegate:self];
 
 }
 
@@ -57,12 +58,14 @@ NSString *const RCITopicPropertyNamedGravatar = @"user.gravatar";
 
 #pragma mark - RKObjectLoaderDelegate
 
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
+- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray *)objects {
     self.topics = [objects copy];
+    NSLog(@"KKKKKK");
     [self.topicTableView reloadData];
+    [self stopLoading];
 }
 
-- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
+- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError *)error {
 }
 
 #pragma mark - UITableViewDataSource
@@ -87,6 +90,7 @@ NSString *const RCITopicPropertyNamedGravatar = @"user.gravatar";
 	nodeLabel.text = topic.nodeName;
     UILabel *countLabel = (UILabel *)[cell viewWithTag:104];
 	countLabel.text = topic.repliesCount.stringValue;
+    countLabel.layer.cornerRadius = 4;
     // cell.textLabel.text = topic.title;
 
     if (![self.observedVisibleItems containsObject:topic.user]) {
@@ -117,6 +121,12 @@ NSString *const RCITopicPropertyNamedGravatar = @"user.gravatar";
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+- (void)refresh
+{
+    RKObjectMapping *topicMapping = [[RKObjectManager sharedManager].mappingProvider objectMappingForClass:[RCITopic class]];
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:@"/api/topics.json" objectMapping:topicMapping delegate:self];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

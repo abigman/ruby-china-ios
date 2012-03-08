@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <RestKit/RestKit.h>
+#import "PullRefreshTableViewController.h"
 
-@interface RCITopicViewController : UITableViewController <RKObjectLoaderDelegate>
+@interface RCITopicViewController : PullRefreshTableViewController <RKObjectLoaderDelegate>
 
 @end
