@@ -32,6 +32,16 @@ NSString *const RCITopicPropertyNamedGravatar = @"user.gravatar";
     return _observedVisibleItems;
 }
 
+- (void)setTopics:(NSArray *)topics
+{
+    for (RCITopic *topic in _topics) {
+        if ([self.observedVisibleItems containsObject:topic.user]) {
+            [topic removeObserver:self forKeyPath:RCITopicPropertyNamedGravatar];
+        }
+    }
+    _topics = topics;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -60,7 +70,6 @@ NSString *const RCITopicPropertyNamedGravatar = @"user.gravatar";
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray *)objects {
     self.topics = [objects copy];
-    NSLog(@"KKKKKK");
     [self.topicTableView reloadData];
     [self stopLoading];
 }
