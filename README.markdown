@@ -6,9 +6,5 @@ iOS client for [Ruby China Group](http://ruby-china.org)
 
   ```
 	git clone https://winfield@github.com/winfield/ruby-china-ios.git
-	cd ruby-china-os
-	git submodule init
-	git submodule update
 
 	ready to go~
-
