@@ -70,7 +70,7 @@ NSString *const RCITopicUrlString = @"http://ruby-china.org/api/topics.json";
     UIActivityIndicatorView *progressIndicator = (UIActivityIndicatorView *)[cell viewWithTag:105];
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:106];
     NSURL *gravatarUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://gravatar.com/avatar/%@.png?s=40", [[topic objectForKey:@"user"] objectForKey:@"gravatar_hash"]]];
-    [imageView setImageWithURL:gravatarUrl];
+    [imageView setImageWithURL:gravatarUrl placeholderImage:[UIImage imageNamed:@"userPlaceHolder.png"]];;
     [progressIndicator stopAnimating];
     
     return cell;

@@ -27,6 +27,7 @@
 		F3361F8D1509FC0100B69BC4 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = F3361F831509FC0100B69BC4 /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F369F255150B40A900A2DE13 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3269D92150390E000C7D2DA /* CoreGraphics.framework */; };
 		F369F25C150B442500A2DE13 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F369F25B150B442500A2DE13 /* PullRefreshTableViewController.m */; };
+		F369F25E150B49E100A2DE13 /* userPlaceHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = F369F25D150B49E100A2DE13 /* userPlaceHolder.png */; };
 		F36A861B1508B3E400A8DE8B /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = F36A861A1508B3E400A8DE8B /* arrow.png */; };
 		F3D5460B1503A5BC00F5A9E3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D5460A1503A5BC00F5A9E3 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,7 @@
 		F3361F831509FC0100B69BC4 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		F369F25A150B442500A2DE13 /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PullRefreshTableViewController.h; path = ../PullRefreshTableViewController.h; sourceTree = "<group>"; };
 		F369F25B150B442500A2DE13 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PullRefreshTableViewController.m; path = ../PullRefreshTableViewController.m; sourceTree = "<group>"; };
+		F369F25D150B49E100A2DE13 /* userPlaceHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userPlaceHolder.png; sourceTree = "<group>"; };
 		F36A861A1508B3E400A8DE8B /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		F3D546001503A59700F5A9E3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		F3D546011503A59700F5A9E3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -139,6 +141,7 @@
 				F3269DA3150390E100C7D2DA /* MainStoryboard_iPad.storyboard */,
 				F3269DA6150390E100C7D2DA /* RCITopicViewController.h */,
 				F3269DA7150390E100C7D2DA /* RCITopicViewController.m */,
+				F369F25D150B49E100A2DE13 /* userPlaceHolder.png */,
 				F36A861A1508B3E400A8DE8B /* arrow.png */,
 				F3269D95150390E000C7D2DA /* Supporting Files */,
 			);
@@ -250,6 +253,7 @@
 				F3269DA2150390E100C7D2DA /* MainStoryboard_iPhone.storyboard in Resources */,
 				F3269DA5150390E100C7D2DA /* MainStoryboard_iPad.storyboard in Resources */,
 				F36A861B1508B3E400A8DE8B /* arrow.png in Resources */,
+				F369F25E150B49E100A2DE13 /* userPlaceHolder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
