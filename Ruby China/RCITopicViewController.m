@@ -8,47 +8,24 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "RCITopicViewController.h"
-#import "RCITopic.h"
+#import "AFNetworking.h"
 
-NSString *const RCITopicPropertyNamedGravatar = @"user.gravatar";
+NSString *const RCITopicUrlString = @"http://ruby-china.org/api/topics.json";
 
 @interface RCITopicViewController ()
 @property (nonatomic, strong) NSArray *topics;
 @property (nonatomic, weak) IBOutlet UITableView* topicTableView;
-@property (nonatomic, strong) NSMutableArray *observedVisibleItems;
 @end
 
 @implementation RCITopicViewController
 @synthesize topicTableView = _topicTableView;
 @synthesize topics = _topics;
-@synthesize observedVisibleItems = _observedVisibleItems;
-
-- (NSMutableArray *)observedVisibleItems
-{
-    if (!_observedVisibleItems) {
-        _observedVisibleItems = [[NSMutableArray alloc] init];
-    }
-    
-    return _observedVisibleItems;
-}
-
-- (void)setTopics:(NSArray *)topics
-{
-    for (RCITopic *topic in _topics) {
-        if ([self.observedVisibleItems containsObject:topic.user]) {
-            [topic removeObserver:self forKeyPath:RCITopicPropertyNamedGravatar];
-        }
-    }
-    _topics = topics;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    RKObjectMapping *topicMapping = [[RKObjectManager sharedManager].mappingProvider objectMappingForClass:[RCITopic class]];
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:@"/api/topics.json" objectMapping:topicMapping delegate:self];
-
+    
+    [self performTopicsRequest];
 }
 
 - (void)viewDidUnload
@@ -66,17 +43,6 @@ NSString *const RCITopicPropertyNamedGravatar = @"user.gravatar";
     }
 }
 
-#pragma mark - RKObjectLoaderDelegate
-
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray *)objects {
-    self.topics = [objects copy];
-    [self.topicTableView reloadData];
-    [self stopLoading];
-}
-
-- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError *)error {
-}
-
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -89,32 +55,23 @@ NSString *const RCITopicPropertyNamedGravatar = @"user.gravatar";
     static NSString *CellIdentifier = @"Topic Summary";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    RCITopic *topic = [self.topics objectAtIndex:indexPath.row];
+    NSDictionary *topic = [self.topics objectAtIndex:indexPath.row];
     
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
-	titleLabel.text = topic.title;
+    titleLabel.text = [topic objectForKey:@"title"];
     UILabel *userLabel = (UILabel *)[cell viewWithTag:102];
-	userLabel.text = topic.user.login;
+    userLabel.text = [[topic objectForKey:@"user"] objectForKey:@"login"];
     UILabel *nodeLabel = (UILabel *)[cell viewWithTag:103];
-	nodeLabel.text = topic.nodeName;
+    nodeLabel.text = [topic objectForKey:@"node_name"];
     UILabel *countLabel = (UILabel *)[cell viewWithTag:104];
-	countLabel.text = topic.repliesCount.stringValue;
+    countLabel.text = [[topic objectForKey:@"replies_count"] stringValue];
     countLabel.layer.cornerRadius = 4;
-    // cell.textLabel.text = topic.title;
-
-    if (![self.observedVisibleItems containsObject:topic.user]) {
-        [topic addObserver:self forKeyPath:RCITopicPropertyNamedGravatar options:0 context:NULL];
-        [topic.user loadGravatar];
-        [self.observedVisibleItems addObject:topic.user];
-    }
     
     UIActivityIndicatorView *progressIndicator = (UIActivityIndicatorView *)[cell viewWithTag:105];
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:106];
-    if (topic.user.gravatar == nil) {
-        [progressIndicator setHidden:NO];
-    } else {
-        imageView.image = topic.user.gravatar;
-    }
+    NSURL *gravatarUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://gravatar.com/avatar/%@.png?s=40", [[topic objectForKey:@"user"] objectForKey:@"gravatar_hash"]]];
+    [imageView setImageWithURL:gravatarUrl];
+    [progressIndicator stopAnimating];
     
     return cell;
 }
@@ -123,38 +80,25 @@ NSString *const RCITopicPropertyNamedGravatar = @"user.gravatar";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
 }
 
 - (void)refresh
 {
-    RKObjectMapping *topicMapping = [[RKObjectManager sharedManager].mappingProvider objectMappingForClass:[RCITopic class]];
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:@"/api/topics.json" objectMapping:topicMapping delegate:self];
+    [self performTopicsRequest];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:RCITopicPropertyNamedGravatar]) {
-        [self performSelectorOnMainThread:@selector(reloadRowForEntity:) withObject:object waitUntilDone:NO modes:[NSArray arrayWithObject:NSRunLoopCommonModes]];
-    }
+- (void)performTopicsRequest
+{    
+    NSURL *url = [NSURL URLWithString:RCITopicUrlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        self.topics = [JSON copy];
+        [self.topicTableView reloadData];
+        [self stopLoading];
+        
+    } failure:nil];
+    
+    [operation start];
 }
-
-- (void)reloadRowForEntity:(id)object {
-    NSInteger row = [self.topics indexOfObject:object];
-    if (row != NSNotFound) {
-        RCITopic *topic = [self.topics objectAtIndex:row];
-        UITableViewCell *cell = [self.topicTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
-        UIImageView *imageView = (UIImageView *)[cell viewWithTag:106];
-        imageView.image = topic.user.gravatar;
-        UIActivityIndicatorView *progressIndicator = (UIActivityIndicatorView *)[cell viewWithTag:105];
-        [progressIndicator setHidden:YES];
-    }   
-}
-
 @end
