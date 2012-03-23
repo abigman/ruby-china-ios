@@ -7,17 +7,18 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-#import "RCITopicViewController.h"
+#import "RCITopicsViewController.h"
+#import "RCITopicDetailViewController.h"
 #import "AFNetworking.h"
 
-NSString *const RCITopicUrlString = @"http://ruby-china.org/api/topics.json";
+NSString *const RCITopicsUrlString = @"http://ruby-china.org/api/topics.json";
 
-@interface RCITopicViewController ()
+@interface RCITopicsViewController ()
 @property (nonatomic, strong) NSArray *topics;
 @property (nonatomic, weak) IBOutlet UITableView* topicTableView;
 @end
 
-@implementation RCITopicViewController
+@implementation RCITopicsViewController
 @synthesize topicTableView = _topicTableView;
 @synthesize topics = _topics;
 
@@ -80,8 +81,15 @@ NSString *const RCITopicUrlString = @"http://ruby-china.org/api/topics.json";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self performSegueWithIdentifier:@"ShowTopic" sender:self];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ShowTopic"]) {
+        [segue.destinationViewController setTopicId:[[self.topics objectAtIndex:[[self.tableView indexPathForSelectedRow] row]] objectForKey:@"_id"]];
+    }
+}
 - (void)refresh
 {
     [self performTopicsRequest];
@@ -89,7 +97,7 @@ NSString *const RCITopicUrlString = @"http://ruby-china.org/api/topics.json";
 
 - (void)performTopicsRequest
 {    
-    NSURL *url = [NSURL URLWithString:RCITopicUrlString];
+    NSURL *url = [NSURL URLWithString:RCITopicsUrlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {

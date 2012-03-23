@@ -14,7 +14,7 @@
 		F3269D9F150390E100C7D2DA /* RCIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F3269D9E150390E100C7D2DA /* RCIAppDelegate.m */; };
 		F3269DA2150390E100C7D2DA /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3269DA0150390E100C7D2DA /* MainStoryboard_iPhone.storyboard */; };
 		F3269DA5150390E100C7D2DA /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3269DA3150390E100C7D2DA /* MainStoryboard_iPad.storyboard */; };
-		F3269DA8150390E100C7D2DA /* RCITopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3269DA7150390E100C7D2DA /* RCITopicViewController.m */; };
+		F3269DA8150390E100C7D2DA /* RCITopicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3269DA7150390E100C7D2DA /* RCITopicsViewController.m */; };
 		F3361F841509FC0100B69BC4 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F3361F701509FC0100B69BC4 /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F3361F851509FC0100B69BC4 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F3361F721509FC0100B69BC4 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F3361F861509FC0100B69BC4 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F3361F741509FC0100B69BC4 /* AFImageRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -29,6 +29,7 @@
 		F369F25C150B442500A2DE13 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F369F25B150B442500A2DE13 /* PullRefreshTableViewController.m */; };
 		F369F25E150B49E100A2DE13 /* userPlaceHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = F369F25D150B49E100A2DE13 /* userPlaceHolder.png */; };
 		F36A861B1508B3E400A8DE8B /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = F36A861A1508B3E400A8DE8B /* arrow.png */; };
+		F391F0D7151C7FA900A210AC /* RCITopicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F391F0D6151C7FA900A210AC /* RCITopicDetailViewController.m */; };
 		F3D5460B1503A5BC00F5A9E3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D5460A1503A5BC00F5A9E3 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,8 +46,8 @@
 		F3269D9E150390E100C7D2DA /* RCIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCIAppDelegate.m; sourceTree = "<group>"; };
 		F3269DA1150390E100C7D2DA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		F3269DA4150390E100C7D2DA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		F3269DA6150390E100C7D2DA /* RCITopicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCITopicViewController.h; sourceTree = "<group>"; };
-		F3269DA7150390E100C7D2DA /* RCITopicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCITopicViewController.m; sourceTree = "<group>"; };
+		F3269DA6150390E100C7D2DA /* RCITopicsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCITopicsViewController.h; sourceTree = "<group>"; };
+		F3269DA7150390E100C7D2DA /* RCITopicsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCITopicsViewController.m; sourceTree = "<group>"; };
 		F3361F6F1509FC0100B69BC4 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		F3361F701509FC0100B69BC4 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		F3361F711509FC0100B69BC4 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -72,6 +73,8 @@
 		F369F25B150B442500A2DE13 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PullRefreshTableViewController.m; path = ../PullRefreshTableViewController.m; sourceTree = "<group>"; };
 		F369F25D150B49E100A2DE13 /* userPlaceHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userPlaceHolder.png; sourceTree = "<group>"; };
 		F36A861A1508B3E400A8DE8B /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		F391F0D5151C7FA900A210AC /* RCITopicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCITopicDetailViewController.h; sourceTree = "<group>"; };
+		F391F0D6151C7FA900A210AC /* RCITopicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCITopicDetailViewController.m; sourceTree = "<group>"; };
 		F3D546001503A59700F5A9E3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		F3D546011503A59700F5A9E3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F3D546041503A5A600F5A9E3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -138,9 +141,11 @@
 				F3269D9D150390E000C7D2DA /* RCIAppDelegate.h */,
 				F3269D9E150390E100C7D2DA /* RCIAppDelegate.m */,
 				F3269DA0150390E100C7D2DA /* MainStoryboard_iPhone.storyboard */,
+				F391F0D5151C7FA900A210AC /* RCITopicDetailViewController.h */,
+				F391F0D6151C7FA900A210AC /* RCITopicDetailViewController.m */,
 				F3269DA3150390E100C7D2DA /* MainStoryboard_iPad.storyboard */,
-				F3269DA6150390E100C7D2DA /* RCITopicViewController.h */,
-				F3269DA7150390E100C7D2DA /* RCITopicViewController.m */,
+				F3269DA6150390E100C7D2DA /* RCITopicsViewController.h */,
+				F3269DA7150390E100C7D2DA /* RCITopicsViewController.m */,
 				F369F25D150B49E100A2DE13 /* userPlaceHolder.png */,
 				F36A861A1508B3E400A8DE8B /* arrow.png */,
 				F3269D95150390E000C7D2DA /* Supporting Files */,
@@ -266,7 +271,7 @@
 			files = (
 				F3269D9B150390E000C7D2DA /* main.m in Sources */,
 				F3269D9F150390E100C7D2DA /* RCIAppDelegate.m in Sources */,
-				F3269DA8150390E100C7D2DA /* RCITopicViewController.m in Sources */,
+				F3269DA8150390E100C7D2DA /* RCITopicsViewController.m in Sources */,
 				F3361F841509FC0100B69BC4 /* AFHTTPClient.m in Sources */,
 				F3361F851509FC0100B69BC4 /* AFHTTPRequestOperation.m in Sources */,
 				F3361F861509FC0100B69BC4 /* AFImageRequestOperation.m in Sources */,
@@ -278,6 +283,7 @@
 				F3361F8C1509FC0100B69BC4 /* AFXMLRequestOperation.m in Sources */,
 				F3361F8D1509FC0100B69BC4 /* UIImageView+AFNetworking.m in Sources */,
 				F369F25C150B442500A2DE13 /* PullRefreshTableViewController.m in Sources */,
+				F391F0D7151C7FA900A210AC /* RCITopicDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

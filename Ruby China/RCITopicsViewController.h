@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "PullRefreshTableViewController.h"
 
-@interface RCITopicViewController : PullRefreshTableViewController
+@interface RCITopicsViewController : PullRefreshTableViewController
 
 @end

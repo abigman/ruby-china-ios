@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="M3P-kl-mEF">
     <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
     </dependencies>
     <scenes>
-        <!--Topic View Controller - Topics-->
+        <!--Topics View Controller - Topics-->
         <scene sceneID="5">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
-                <viewController id="2" customClass="RCITopicViewController" sceneMemberID="viewController">
+                <viewController id="2" customClass="RCITopicsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="69" sectionHeaderHeight="22" sectionFooterHeight="22" id="p9L-iJ-y4w">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
@@ -55,10 +56,6 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <activityIndicatorView opaque="NO" tag="105" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="gray" id="zDf-YW-lwJ">
-                                            <rect key="frame" x="30" y="24" width="20" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </activityIndicatorView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -94,10 +91,80 @@
                     <navigationItem key="navigationItem" title="Topics" id="GSK-Kn-OjV"/>
                     <connections>
                         <outlet property="topicTableView" destination="p9L-iJ-y4w" id="wQe-Dr-FG9"/>
+                        <segue destination="9d2-Nw-eAw" kind="push" identifier="ShowTopic" id="i7o-Qt-95e"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-309" y="-55"/>
+            <point key="canvasLocation" x="-406" y="-55"/>
+        </scene>
+        <!--Topic Detail View Controller-->
+        <scene sceneID="Pt4-tc-2eb">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bai-fq-ouw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="9d2-Nw-eAw" customClass="RCITopicDetailViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0Kf-30-Rqi">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Topic Detail" rowHeight="230" id="huc-nr-RNJ">
+                                <rect key="frame" x="0.0" y="22" width="320" height="230"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="229"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="106" contentMode="scaleToFill" id="4sB-7x-P80">
+                                            <rect key="frame" x="20" y="11" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" text="Tyrion Lannister" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="iPl-3q-duG">
+                                            <rect key="frame" x="68" y="11" width="84" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="I know how this game is played" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="uo2-La-Mky">
+                                            <rect key="frame" x="68" y="33" width="232" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="13"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="103" contentMode="left" text="Game of Thrones" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="BGV-tG-sRJ">
+                                            <rect key="frame" x="213" y="11" width="87" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="left" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="fgZ-h4-uJg">
+                                            <rect key="frame" x="68" y="70" width="232" height="139"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <mutableString key="text">The War of the Five Kings in Westeros seems to be winding down. In the North, King Stannis Baratheon has installed himself at the Wall and attempts to win the support of the northmen. This is complicated by the fact that the Lannisters have installed Roose Bolton of House Bolton (loyal to the Iron Throne) as Warden of the North, and much of the west coast is under occupation by the Ironborn. On the advice of Jon Snow, Stannis seeks and receives the support of the hill clans and captures Deepwood Motte from Asha Greyjoy. He then chooses to march south to confront the Boltons at Winterfell, but his army becomes snowbound.
+On the Wall itself, Jon Snow has been elected the 998th Lord Commander of the Night's Watch, but the young man has enemies both in the Watch and beyond the Wall. After making a peace with the wildlings, he lets them through in large numbers to reinforce the Wall against the Others. The Red Priestess Melisandre shares many of her visions with Jon, telling him repeatedly that he has enemies in the Watch and warning him of daggers in the dark. Her prophecy comes to fruition when Jon is attacked by his Brothers and stabbed several times. The narrative closes with Jon losing consciousness.</mutableString>
+                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9d2-Nw-eAw" id="HpF-9h-R1m"/>
+                            <outlet property="delegate" destination="9d2-Nw-eAw" id="zH4-6Y-w9u"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="nZm-sF-DK9"/>
+                    <connections>
+                        <outlet property="topicTableView" destination="0Kf-30-Rqi" id="sA1-R4-yQL"/>
+                    </connections>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="25" y="-55"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3hB-kc-1Zy">
@@ -122,8 +189,14 @@
         <class className="PullRefreshTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PullRefreshTableViewController.h"/>
         </class>
-        <class className="RCITopicViewController" superclassName="PullRefreshTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RCITopicViewController.h"/>
+        <class className="RCITopicDetailViewController" superclassName="PullRefreshTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RCITopicDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="topicTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="RCITopicsViewController" superclassName="PullRefreshTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RCITopicsViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="topicTableView" candidateClass="UITableView"/>
             </relationships>
