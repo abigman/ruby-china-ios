@@ -107,11 +107,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Topic Detail" rowHeight="230" id="huc-nr-RNJ">
-                                <rect key="frame" x="0.0" y="22" width="320" height="230"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Topic Detail" rowHeight="221" id="huc-nr-RNJ">
+                                <rect key="frame" x="0.0" y="22" width="320" height="221"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="229"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="106" contentMode="scaleToFill" id="4sB-7x-P80">
@@ -142,8 +142,38 @@
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="left" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="fgZ-h4-uJg">
                                             <rect key="frame" x="68" y="70" width="232" height="139"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <mutableString key="text">The War of the Five Kings in Westeros seems to be winding down. In the North, King Stannis Baratheon has installed himself at the Wall and attempts to win the support of the northmen. This is complicated by the fact that the Lannisters have installed Roose Bolton of House Bolton (loyal to the Iron Throne) as Warden of the North, and much of the west coast is under occupation by the Ironborn. On the advice of Jon Snow, Stannis seeks and receives the support of the hill clans and captures Deepwood Motte from Asha Greyjoy. He then chooses to march south to confront the Boltons at Winterfell, but his army becomes snowbound.
-On the Wall itself, Jon Snow has been elected the 998th Lord Commander of the Night's Watch, but the young man has enemies both in the Watch and beyond the Wall. After making a peace with the wildlings, he lets them through in large numbers to reinforce the Wall against the Others. The Red Priestess Melisandre shares many of her visions with Jon, telling him repeatedly that he has enemies in the Watch and warning him of daggers in the dark. Her prophecy comes to fruition when Jon is attacked by his Brothers and stabbed several times. The narrative closes with Jon losing consciousness.</mutableString>
+                                            <string key="text">The War of the Five Kings in Westeros seems to be winding down. In the North, King Stannis Baratheon has installed himself at the Wall and attempts to win the support of the northmen. This is complicated by the fact that the Lannisters have installed Roose Bolton of House Bolton (loyal to the Iron Throne) as Warden of the North, and much of the west coast is under occupation by the Ironborn. On the advice of Jon Snow, Stannis seeks and receives the support of the hill clans and captures Deepwood Motte from Asha Greyjoy. He then chooses to march south to confront the Boltons at Winterfell, but his army becomes snowbound.
+On the Wall itself, Jon Snow has been elected the 998th Lord Commander of the Night's Watch, but the young man has enemies both in the Watch and beyond the Wall. After making a peace with the wildlings, he lets them through in large numbers to reinforce the Wall against the Others. The Red Priestess Melisandre shares many of her visions with Jon, telling him repeatedly that he has enemies in the Watch and warning him of daggers in the dark. Her prophecy comes to fruition when Jon is attacked by his Brothers and stabbed several times. The narrative closes with Jon losing consciousness.</string>
+                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Reply" rowHeight="153" id="HpP-gi-MCo">
+                                <rect key="frame" x="0.0" y="243" width="320" height="153"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="152"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="106" contentMode="scaleToFill" id="2pv-5D-msB">
+                                            <rect key="frame" x="20" y="20" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" text="Arya Stark" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Dau-Wm-n6j">
+                                            <rect key="frame" x="68" y="20" width="84" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="left" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="rpJ-hs-0KX">
+                                            <rect key="frame" x="68" y="42" width="232" height="90"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <mutableString key="text">She is left-handed, quick and dexterous. She is a warg, entering her direwolf Nymeria in her dreams and cats in Braavos. She has learned basic swordplay in the Braavosi Water Dancer tradition and knows how to use knives. She received a noble's education, and is said to be good with mathematics and an excellent horse rider. She has proved to know at least a bit of High Valyrian. She also speaks Braavosi with a strong accent and has put some effort into learning the language, under orders from the Kindly Man. She has a quick and curious mind and a pragmatic outlook.</mutableString>
                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
