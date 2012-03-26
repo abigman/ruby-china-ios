@@ -81,7 +81,7 @@ NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
         CGSize expectedLabelSize = [self topicBodyLabelSize:@"Topic Detail" withBodyString:bodyString];
         //adjust the label the the new height.
         CGRect newFrame = bodyLabel.frame;
-        newFrame.size.height = expectedLabelSize.height;
+        newFrame.size.height = expectedLabelSize.height + 25.0f;
         bodyLabel.frame = newFrame;
         bodyLabel.text = bodyString;
         
@@ -109,7 +109,7 @@ NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
         CGSize expectedLabelSize = [self topicBodyLabelSize:@"Reply" withBodyString:bodyString];
         //adjust the label the the new height.
         CGRect newFrame = bodyLabel.frame;
-        newFrame.size.height = expectedLabelSize.height;
+        newFrame.size.height = expectedLabelSize.height + 25.0f;
         bodyLabel.frame = newFrame;
         bodyLabel.text = bodyString;
         
@@ -128,7 +128,7 @@ NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
     } else {
         NSString *bodyString = [[self.topicReplies objectAtIndex:(indexPath.row-1)] objectForKey:@"body"];
         CGSize expectedLabelSize = [self topicBodyLabelSize:@"Reply" withBodyString:bodyString];
-        return expectedLabelSize.height + 60.0f;
+        return expectedLabelSize.height + 85.0f;
     }
 }
 
