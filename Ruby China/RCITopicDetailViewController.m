@@ -67,6 +67,7 @@ NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
     if (indexPath.row == 0) {
         static NSString *topicDetailCellIdentifier = @"Topic Detail";
         UITableViewCell *topicDetailCell = [tableView dequeueReusableCellWithIdentifier:topicDetailCellIdentifier];
+        topicDetailCell.backgroundColor=[UIColor lightGrayColor];
         UILabel *titleLabel = (UILabel *)[topicDetailCell viewWithTag:101];
         titleLabel.text = [self.topicDetail objectForKey:@"title"];
         UILabel *userLabel = (UILabel *)[topicDetailCell viewWithTag:102];
@@ -78,12 +79,14 @@ NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
         
         UILabel *bodyLabel = (UILabel *)[topicDetailCell viewWithTag:105];
         NSString *bodyString = [self.topicDetail objectForKey:@"body"];
-        CGSize expectedLabelSize = [self topicBodyLabelSize:@"Topic Detail" withBodyString:bodyString];
+        CGSize expectedLabelSize = [self labelSize:@"Topic Detail" withLabelTag:105 withBodyString:bodyString];
+        NSLog(@"Body label size: %f", expectedLabelSize.height);
         //adjust the label the the new height.
         CGRect newFrame = bodyLabel.frame;
-        newFrame.size.height = expectedLabelSize.height + 25.0f;
+        newFrame.size.height = expectedLabelSize.height + 90.0f;
         bodyLabel.frame = newFrame;
         bodyLabel.text = bodyString;
+        NSLog(@"%@", bodyString);
         
         UIImageView *imageView = (UIImageView *)[topicDetailCell viewWithTag:106];
         NSURL *gravatarUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://gravatar.com/avatar/%@.png?s=40", [[self.topicDetail objectForKey:@"user"] objectForKey:@"gravatar_hash"]]];
@@ -93,6 +96,7 @@ NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
     } else {
         static NSString *topicReplyCellIdentifier = @"Reply";
         UITableViewCell *topicReplyCell = [tableView dequeueReusableCellWithIdentifier:topicReplyCellIdentifier];
+        topicReplyCell.backgroundColor=[UIColor lightGrayColor];
         NSDictionary *topicReply = [self.topicReplies objectAtIndex:(indexPath.row-1)];
         
         UILabel *titleLabel = (UILabel *)[topicReplyCell viewWithTag:101];
@@ -106,10 +110,10 @@ NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
         
         UILabel *bodyLabel = (UILabel *)[topicReplyCell viewWithTag:105];
         NSString *bodyString = [topicReply objectForKey:@"body"];
-        CGSize expectedLabelSize = [self topicBodyLabelSize:@"Reply" withBodyString:bodyString];
+        CGSize expectedLabelSize = [self labelSize:@"Reply" withLabelTag:105 withBodyString:bodyString];
         //adjust the label the the new height.
         CGRect newFrame = bodyLabel.frame;
-        newFrame.size.height = expectedLabelSize.height + 25.0f;
+        newFrame.size.height = expectedLabelSize.height + 30.0f;
         bodyLabel.frame = newFrame;
         bodyLabel.text = bodyString;
         
@@ -123,24 +127,28 @@ NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         NSString *bodyString = [self.topicDetail objectForKey:@"body"];
-        CGSize expectedLabelSize = [self topicBodyLabelSize:@"Topic Detail" withBodyString:bodyString];
-        return expectedLabelSize.height + 85.0f;
+        NSString *titleString = [self.topicDetail objectForKey:@"title"];
+        CGSize titleLabelSize = [self labelSize:@"Topic Detail" withLabelTag:101 withBodyString:titleString];
+        CGSize bodyLabelSize = [self labelSize:@"Topic Detail" withLabelTag:105 withBodyString:bodyString];
+        NSLog(@"Header size: %f", titleLabelSize.height + bodyLabelSize.height);
+        return titleLabelSize.height + bodyLabelSize.height + 160.0f;
     } else {
         NSString *bodyString = [[self.topicReplies objectAtIndex:(indexPath.row-1)] objectForKey:@"body"];
-        CGSize expectedLabelSize = [self topicBodyLabelSize:@"Reply" withBodyString:bodyString];
-        return expectedLabelSize.height + 85.0f;
+        CGSize bodyLabelSize = [self labelSize:@"Reply" withLabelTag:105 withBodyString:bodyString];
+        return bodyLabelSize.height + 85.0f;
     }
 }
 
-- (CGSize)topicBodyLabelSize:(NSString *)cellIdentifier withBodyString:(NSString *)bodyString
+- (CGSize)labelSize:(NSString *)cellIdentifier withLabelTag:(NSInteger)tag withBodyString:(NSString *)bodyString
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    UILabel *bodyLabel = (UILabel *)[cell viewWithTag:105];
+    UILabel *label = (UILabel *)[cell viewWithTag:tag];
     
     //Calculate the expected size based on the font and linebreak mode of body label
-    CGSize maximumLabelSize = CGSizeMake(296,9999);
+    //CGSize maximumLabelSize = CGSizeMake(296,9999);
+    CGSize maximumLabelSize = CGSizeMake(280,9000);
     
-    CGSize expectedLabelSize = [bodyString sizeWithFont:bodyLabel.font constrainedToSize:maximumLabelSize lineBreakMode:bodyLabel.lineBreakMode];
+    CGSize expectedLabelSize = [bodyString sizeWithFont:label.font constrainedToSize:maximumLabelSize lineBreakMode:label.lineBreakMode];
     
     return expectedLabelSize;
 }

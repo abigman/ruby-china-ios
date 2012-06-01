@@ -31,6 +31,8 @@
 		F36A861B1508B3E400A8DE8B /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = F36A861A1508B3E400A8DE8B /* arrow.png */; };
 		F391F0D7151C7FA900A210AC /* RCITopicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F391F0D6151C7FA900A210AC /* RCITopicDetailViewController.m */; };
 		F3D5460B1503A5BC00F5A9E3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D5460A1503A5BC00F5A9E3 /* QuartzCore.framework */; };
+		F3E6CE6A1578C8A0000F7FF2 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F3E6CE671578C8A0000F7FF2 /* SVProgressHUD.bundle */; };
+		F3E6CE6B1578C8A0000F7FF2 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E6CE691578C8A0000F7FF2 /* SVProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,9 @@
 		F3D546071503A5B000F5A9E3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F3D5460A1503A5BC00F5A9E3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F3D5460C1503A5CE00F5A9E3 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		F3E6CE671578C8A0000F7FF2 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		F3E6CE681578C8A0000F7FF2 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		F3E6CE691578C8A0000F7FF2 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +107,7 @@
 		F3269D7F150390E000C7D2DA = {
 			isa = PBXGroup;
 			children = (
+				F3E6CE661578C8A0000F7FF2 /* SVProgressHUD */,
 				F369F256150B42E700A2DE13 /* PullToRefresh */,
 				F3361F6E1509FC0100B69BC4 /* AFNetworking */,
 				F3269D94150390E000C7D2DA /* Ruby China */,
@@ -202,6 +208,16 @@
 			path = "Ruby China";
 			sourceTree = "<group>";
 		};
+		F3E6CE661578C8A0000F7FF2 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				F3E6CE671578C8A0000F7FF2 /* SVProgressHUD.bundle */,
+				F3E6CE681578C8A0000F7FF2 /* SVProgressHUD.h */,
+				F3E6CE691578C8A0000F7FF2 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -259,6 +275,7 @@
 				F3269DA5150390E100C7D2DA /* MainStoryboard_iPad.storyboard in Resources */,
 				F36A861B1508B3E400A8DE8B /* arrow.png in Resources */,
 				F369F25E150B49E100A2DE13 /* userPlaceHolder.png in Resources */,
+				F3E6CE6A1578C8A0000F7FF2 /* SVProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +301,7 @@
 				F3361F8D1509FC0100B69BC4 /* UIImageView+AFNetworking.m in Sources */,
 				F369F25C150B442500A2DE13 /* PullRefreshTableViewController.m in Sources */,
 				F391F0D7151C7FA900A210AC /* RCITopicDetailViewController.m in Sources */,
+				F3E6CE6B1578C8A0000F7FF2 /* SVProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

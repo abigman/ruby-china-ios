@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="M3P-kl-mEF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="M3P-kl-mEF">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
         <!--Topics View Controller - Topics-->
@@ -46,14 +46,6 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="104" contentMode="left" text="19" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="fes-O6-JJh">
-                                            <rect key="frame" x="258" y="4" width="22" height="12"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.32537895840423436" green="0.37667854391981725" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
@@ -139,7 +131,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="left" lineBreakMode="characterWrap" numberOfLines="0" minimumFontSize="10" id="fgZ-h4-uJg">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="left" lineBreakMode="wordWrap" numberOfLines="0" minimumFontSize="10" id="fgZ-h4-uJg">
                                             <rect key="frame" x="68" y="70" width="232" height="130"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <string key="text">The War of the Five Kings in Westeros seems to be winding down. In the North, King Stannis Baratheon has installed himself at the Wall and attempts to win the support of the northmen. This is complicated by the fact that the Lannisters have installed Roose Bolton of House Bolton (loyal to the Iron Throne) as Warden of the North, and much of the west coast is under occupation by the Ironborn. On the advice of Jon Snow, Stannis seeks and receives the support of the hill clans and captures Deepwood Motte from Asha Greyjoy. He then chooses to march south to confront the Boltons at Winterfell, but his army becomes snowbound.
@@ -173,7 +165,7 @@ On the Wall itself, Jon Snow has been elected the 998th Lord Commander of the Ni
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="left" lineBreakMode="characterWrap" numberOfLines="0" minimumFontSize="10" id="rpJ-hs-0KX">
                                             <rect key="frame" x="68" y="42" width="232" height="90"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <mutableString key="text">She is left-handed, quick and dexterous. She is a warg, entering her direwolf Nymeria in her dreams and cats in Braavos. She has learned basic swordplay in the Braavosi Water Dancer tradition and knows how to use knives. She received a noble's education, and is said to be good with mathematics and an excellent horse rider. She has proved to know at least a bit of High Valyrian. She also speaks Braavosi with a strong accent and has put some effort into learning the language, under orders from the Kindly Man. She has a quick and curious mind and a pragmatic outlook.</mutableString>
+                                            <string key="text">She is left-handed, quick and dexterous. She is a warg, entering her direwolf Nymeria in her dreams and cats in Braavos. She has learned basic swordplay in the Braavosi Water Dancer tradition and knows how to use knives. She received a noble's education, and is said to be good with mathematics and an excellent horse rider. She has proved to know at least a bit of High Valyrian. She also speaks Braavosi with a strong accent and has put some effort into learning the language, under orders from the Kindly Man. She has a quick and curious mind and a pragmatic outlook.</string>
                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
