@@ -8,6 +8,7 @@
 
 #import "RCITopicDetailViewController.h"
 #import "AFNetworking.h"
+#import "SVProgressHUD.h"
 
 NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
 
@@ -27,6 +28,7 @@ NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
 {
     [super viewDidLoad];
     
+    [SVProgressHUD showWithStatus:@"Loading..."];
     [self performTopicDetailRequest];
 }
 
@@ -58,7 +60,6 @@ NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return [[self topicReplies] count] + 1;
     return [[self.topicDetail objectForKey:@"replies"] count] + 1;
 }
 
@@ -80,13 +81,11 @@ NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
         UILabel *bodyLabel = (UILabel *)[topicDetailCell viewWithTag:105];
         NSString *bodyString = [self.topicDetail objectForKey:@"body"];
         CGSize expectedLabelSize = [self labelSize:@"Topic Detail" withLabelTag:105 withBodyString:bodyString];
-        NSLog(@"Body label size: %f", expectedLabelSize.height);
         //adjust the label the the new height.
         CGRect newFrame = bodyLabel.frame;
         newFrame.size.height = expectedLabelSize.height + 90.0f;
         bodyLabel.frame = newFrame;
         bodyLabel.text = bodyString;
-        NSLog(@"%@", bodyString);
         
         UIImageView *imageView = (UIImageView *)[topicDetailCell viewWithTag:106];
         NSURL *gravatarUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://gravatar.com/avatar/%@.png?s=40", [[self.topicDetail objectForKey:@"user"] objectForKey:@"gravatar_hash"]]];
@@ -130,7 +129,6 @@ NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
         NSString *titleString = [self.topicDetail objectForKey:@"title"];
         CGSize titleLabelSize = [self labelSize:@"Topic Detail" withLabelTag:101 withBodyString:titleString];
         CGSize bodyLabelSize = [self labelSize:@"Topic Detail" withLabelTag:105 withBodyString:bodyString];
-        NSLog(@"Header size: %f", titleLabelSize.height + bodyLabelSize.height);
         return titleLabelSize.height + bodyLabelSize.height + 160.0f;
     } else {
         NSString *bodyString = [[self.topicReplies objectAtIndex:(indexPath.row-1)] objectForKey:@"body"];
@@ -162,13 +160,13 @@ NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
 {
     NSString *detailUrl = [RCITopicBaseUrlString stringByAppendingFormat:@"%@.json", self.topicId];
     NSURL *url = [NSURL URLWithString:detailUrl];
-    NSLog(@"URL: %@", url);
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         self.topicDetail = [JSON copy];
         [self.topicTableView reloadData];
         [self stopLoading];
+        [SVProgressHUD dismiss];
         
     } failure:nil];
     

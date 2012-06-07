@@ -10,6 +10,7 @@
 #import "RCITopicsViewController.h"
 #import "RCITopicDetailViewController.h"
 #import "AFNetworking.h"
+#import "SVProgressHUD.h"
 
 NSString *const RCITopicsUrlString = @"http://ruby-china.org/api/topics.json";
 
@@ -26,6 +27,7 @@ NSString *const RCITopicsUrlString = @"http://ruby-china.org/api/topics.json";
 {
     [super viewDidLoad];
     
+    [SVProgressHUD showWithStatus:@"Loading..."];
     [self performTopicsRequest];
 }
 
@@ -104,6 +106,7 @@ NSString *const RCITopicsUrlString = @"http://ruby-china.org/api/topics.json";
         self.topics = [JSON copy];
         [self.topicTableView reloadData];
         [self stopLoading];
+        [SVProgressHUD dismiss];
         
     } failure:nil];
     
