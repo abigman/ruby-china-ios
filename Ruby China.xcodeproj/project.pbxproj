@@ -670,8 +670,6 @@
 				<string>Ruby China/Ruby China-Prefix.pch</string>
 				<key>INFOPLIST_FILE</key>
 				<string>Ruby China/Ruby China-Info.plist</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
 				<key>PRODUCT_NAME</key>
 				<string>$(TARGET_NAME)</string>
 				<key>WRAPPER_EXTENSION</key>
@@ -694,8 +692,6 @@
 				<string>Ruby China/Ruby China-Prefix.pch</string>
 				<key>INFOPLIST_FILE</key>
 				<string>Ruby China/Ruby China-Info.plist</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
 				<key>PRODUCT_NAME</key>
 				<string>$(TARGET_NAME)</string>
 				<key>WRAPPER_EXTENSION</key>
