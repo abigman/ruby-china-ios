@@ -9,6 +9,8 @@
 #import "RCITopicDetailViewController.h"
 #import "AFNetworking.h"
 #import "SVProgressHUD.h"
+#import "DTCoreText.h"
+#import "DTAttributedTextView.h"
 
 NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
 
@@ -56,7 +58,31 @@ NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
     }
 }
 
+- (NSAttributedString *)attributedStringFromHtml:(NSString *)htmlBodyString
+{
+    NSData *htmlBodyData = [htmlBodyString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    // Create attributed string from HTML
+    CGSize maxImageSize = CGSizeMake(self.view.bounds.size.width - 20.0, self.view.bounds.size.height - 20.0);
+    
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:1.0], NSTextSizeMultiplierDocumentOption, [NSValue valueWithCGSize:maxImageSize], DTMaxImageSize,
+                             @"Times New Roman", DTDefaultFontFamily,  @"purple", DTDefaultLinkColor, nil];
+    
+    NSAttributedString *string = [[NSAttributedString alloc] initWithHTML:htmlBodyData options:options documentAttributes:NULL];
+    
+    return string;
+}
+
 #pragma mark - UITableViewDataSource
+- (void)setBodyHtmlView:(UITableViewCell *)cell attributedHtmlString:(NSAttributedString *)attributedHtmlString
+{
+    DTAttributedTextView *bodyView = (DTAttributedTextView *)[cell viewWithTag:105];
+    bodyView.contentView.edgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+    bodyView.attributedString = attributedHtmlString;
+    bodyView.scrollEnabled = NO;
+    [bodyView setShowsHorizontalScrollIndicator:NO];
+    [bodyView setShowsVerticalScrollIndicator:NO];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -78,14 +104,9 @@ NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
         UILabel *countLabel = (UILabel *)[topicDetailCell viewWithTag:104];
         countLabel.text = [[self.topicDetail objectForKey:@"replies_count"] stringValue];
         
-        UILabel *bodyLabel = (UILabel *)[topicDetailCell viewWithTag:105];
-        NSString *bodyString = [self.topicDetail objectForKey:@"body"];
-        CGSize expectedLabelSize = [self labelSize:@"Topic Detail" withLabelTag:105 withBodyString:bodyString];
-        //adjust the label the the new height.
-        CGRect newFrame = bodyLabel.frame;
-        newFrame.size.height = expectedLabelSize.height + 90.0f;
-        bodyLabel.frame = newFrame;
-        bodyLabel.text = bodyString;
+        NSString *htmlBodyString = [self.topicDetail objectForKey:@"body_html"];
+        NSAttributedString *attributedHtmlString = [self attributedStringFromHtml:htmlBodyString];
+        [self setBodyHtmlView:topicDetailCell attributedHtmlString:attributedHtmlString];
         
         UIImageView *imageView = (UIImageView *)[topicDetailCell viewWithTag:106];
         NSURL *gravatarUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://gravatar.com/avatar/%@.png?s=40", [[self.topicDetail objectForKey:@"user"] objectForKey:@"gravatar_hash"]]];
@@ -107,34 +128,42 @@ NSString *const RCITopicBaseUrlString = @"http://ruby-china.org/api/topics/";
         UILabel *countLabel = (UILabel *)[topicReplyCell viewWithTag:104];
         countLabel.text = [[topicReply objectForKey:@"replies_count"] stringValue];
         
-        UILabel *bodyLabel = (UILabel *)[topicReplyCell viewWithTag:105];
-        NSString *bodyString = [topicReply objectForKey:@"body"];
-        CGSize expectedLabelSize = [self labelSize:@"Reply" withLabelTag:105 withBodyString:bodyString];
-        //adjust the label the the new height.
-        CGRect newFrame = bodyLabel.frame;
-        newFrame.size.height = expectedLabelSize.height + 30.0f;
-        bodyLabel.frame = newFrame;
-        bodyLabel.text = bodyString;
+        NSString *htmlBodyString = [topicReply objectForKey:@"body_html"];
+        NSAttributedString *attributedHtmlString = [self attributedStringFromHtml:htmlBodyString];
+        [self setBodyHtmlView:topicReplyCell attributedHtmlString:attributedHtmlString];
         
         UIImageView *imageView = (UIImageView *)[topicReplyCell viewWithTag:106];
-        NSURL *gravatarUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://gravatar.com/avatar/%@.png?s=40", [[topicReply objectForKey:@"user"] objectForKey:@"gravatar_hash"]]];
+        NSURL *gravatarUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://gravatar.com/avatar/%@.png?s=46", [[topicReply objectForKey:@"user"] objectForKey:@"gravatar_hash"]]];
         [imageView setImageWithURL:gravatarUrl placeholderImage:[UIImage imageNamed:@"userPlaceHolder.png"]];
         return topicReplyCell;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat contentWidth = tableView.frame.size.width;
+    CGFloat height = 0.0f;
+    
     if (indexPath.row == 0) {
-        NSString *bodyString = [self.topicDetail objectForKey:@"body"];
-        NSString *titleString = [self.topicDetail objectForKey:@"title"];
-        CGSize titleLabelSize = [self labelSize:@"Topic Detail" withLabelTag:101 withBodyString:titleString];
-        CGSize bodyLabelSize = [self labelSize:@"Topic Detail" withLabelTag:105 withBodyString:bodyString];
-        return titleLabelSize.height + bodyLabelSize.height + 160.0f;
+        NSString *htmlBodyString = [self.topicDetail objectForKey:@"body_html"];
+        NSAttributedString *attributedHtmlString = [self attributedStringFromHtml:htmlBodyString];
+        DTAttributedTextContentView *contentView = [[DTAttributedTextContentView alloc] initWithAttributedString:attributedHtmlString width:contentWidth];
+        CGSize expectedSize = [contentView suggestedFrameSizeToFitEntireStringConstraintedToWidth:contentWidth];
+        height = expectedSize.height;
     } else {
-        NSString *bodyString = [[self.topicReplies objectAtIndex:(indexPath.row-1)] objectForKey:@"body"];
-        CGSize bodyLabelSize = [self labelSize:@"Reply" withLabelTag:105 withBodyString:bodyString];
-        return bodyLabelSize.height + 85.0f;
+        NSString *htmlBodyString = [[self.topicReplies objectAtIndex:(indexPath.row-1)] objectForKey:@"body_html"];
+        NSAttributedString *attributedHtmlString = [self attributedStringFromHtml:htmlBodyString];
+        DTAttributedTextContentView *contentView = [[DTAttributedTextContentView alloc] initWithAttributedString:attributedHtmlString width:contentWidth];
+        CGSize expectedSize = [contentView suggestedFrameSizeToFitEntireStringConstraintedToWidth:contentWidth];
+        height = expectedSize.height;
     }
+    
+    if (height < 180.0f) {
+        height += 130.0f;
+    } else {
+        height += 155.0f;
+    }
+    
+    return height;
 }
 
 - (CGSize)labelSize:(NSString *)cellIdentifier withLabelTag:(NSInteger)tag withBodyString:(NSString *)bodyString

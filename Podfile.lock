@@ -1,9 +1,11 @@
 PODS:
   - AFNetworking (1.0RC1)
+  - DTCoreText (1.0.1)
   - PullToRefresh (0.0.1)
   - SVProgressHUD (0.7)
 
 DEPENDENCIES:
   - AFNetworking
+  - DTCoreText (~> 1.0.1)
   - PullToRefresh
   - SVProgressHUD
